@@ -44,6 +44,7 @@
                                             <th>{{ trans('customers.address') }}</th>
 
                                             <th>{{ trans('general.active') }}</th>
+                                            <th>{{ trans('customers.rating_status') }}</th>
                                             <th>{{ trans('labels.general.actions') }}</th>
                                         </tr>
                                         </thead>
@@ -122,6 +123,7 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'address', name: 'address'},
                     {data: 'created_at', name: 'created_at'},
+                    {data: 'rating_status', name: 'rating_status'},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
                 ],
                 order: [[0, "asc"]],
