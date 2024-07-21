@@ -61,6 +61,19 @@ class SuppliersTableController extends Controller
                                                                       src="' . Storage::disk('public')->url('app/public/img/supplier/' . $supplier->picture) . '"
                                                                       alt="Client Image">';
             })
+            ->addColumn('rating_status', function ($supplier) {
+                $ratingStatus = $supplier->rating_status;
+
+                if ($ratingStatus === 'sin calificar' || $ratingStatus === 'Muy Malo') {
+                    return '<span style="color:red">' . $ratingStatus . '</span>';
+                }else if($ratingStatus === "Malo"){
+                    return '<span style="color:orange">' . $ratingStatus . '</span>';
+                }else if($ratingStatus === "Bueno" || $ratingStatus === "Excelente"){
+                    return '<span style="color:green">' . $ratingStatus . '</span>';
+                }
+
+                return $ratingStatus;
+            })
             ->addColumn('created_at', function ($supplier) {
                 $c = '';
                 if ($supplier->active) $c = 'checked';

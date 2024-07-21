@@ -47,4 +47,5 @@ return [
 'login_is_suspended'=>'Iniciar sesión suspendido',
 'panel'=>'Panel de clientes',
 'wallet'=>'Billetera',
+'rating_status' => 'Calificación'
 ];

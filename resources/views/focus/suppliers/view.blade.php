@@ -44,6 +44,12 @@
                                                        role="tab">{{ trans('customers.other_data') }}</a>
                                                 </li>
 
+                                                <li class="nav-item">
+                                                    <a class="nav-link " id="active-tab4" data-toggle="tab"
+                                                       href="#active4" aria-controls="active4"
+                                                       role="tab">{{ trans('suppliers.rating') }}</a>
+                                                </li>
+
 
                                             </ul>
                                             <div class="tab-content px-1 pt-1">
@@ -151,6 +157,21 @@
                                                         </div>
                                                         <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">
                                                             <p>{{$supplier['custom1']}}</p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="tab-pane" id="active4" aria-labelledby="link-tab4"
+                                                     role="tabpanel">
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-3 border-blue-grey border-lighten-5  p-1">
+                                                            <p>{{trans('customers.rating_status')}}</p>
+                                                        </div>
+                                                        <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">
+                                                            <p>{{$supplier['rating_status']}}</p>
                                                         </div>
                                                     </div>
 

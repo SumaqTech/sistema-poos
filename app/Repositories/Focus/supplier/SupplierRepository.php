@@ -51,7 +51,7 @@ class SupplierRepository extends BaseRepository
     {
 
         return $this->query()
-            ->get(['id','name','company','email','phone','address','picture','active','created_at']);
+            ->get(['id','name','company','email','phone','address','picture','active','rating_status','created_at']);
     }
 
     /**

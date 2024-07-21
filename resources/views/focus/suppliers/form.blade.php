@@ -11,6 +11,11 @@
                    aria-selected="false">{{trans('general.other')}}</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" role="tab"
+                   aria-selected="false">{{trans('suppliers.rating')}}</a>
+            </li>
+
         </ul>
         <div class="tab-content px-1 pt-1">
             <div class="tab-pane active" id="tab1" role="tabpanel" aria-labelledby="base-tab1">
@@ -99,6 +104,23 @@
                     {{ Form::label( 'picture', trans('customers.picture'),['class' => 'col-lg-2 control-label']) }}
                     <div class='col-lg-6'>
                         {!! Form::file('picture', array('class'=>'input' )) !!}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="base-tab4">
+
+                <div class='form-group'>
+                    {{ Form::label('rating_status', 'Calificación', ['class' => 'col-lg-2 control-label']) }}
+                    <div class='col-lg-10'>
+                        {{ Form::select('rating_status', [
+                            'sin calificar' => "Sin Calificar",
+                            'Malo' => 'Malo',
+                            'Muy Malo' => 'Muy Malo',
+                            'Bueno' => 'Bueno',
+                            'Excelente' => 'Excelente'
+                        ], null, ['class' => 'form-control box-size', 'placeholder' => 'Seleccione una opción']) }}
                     </div>
                 </div>
 
