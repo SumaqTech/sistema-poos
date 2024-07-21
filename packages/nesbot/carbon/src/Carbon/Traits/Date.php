@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Carbon\Traits;
 
 use BadMethodCallException;
@@ -728,8 +729,8 @@ trait Date
 
         if (!$date instanceof DateTime && !$date instanceof DateTimeInterface) {
             throw new InvalidTypeException(
-                $message.'DateTime or DateTimeInterface, '.
-                (\is_object($date) ? \get_class($date) : \gettype($date)).' given'
+                $message . 'DateTime or DateTimeInterface, ' .
+                    (\is_object($date) ? \get_class($date) : \gettype($date)) . ' given'
             );
         }
     }
@@ -895,102 +896,102 @@ trait Date
 
                 return is_numeric($value) ? (int) $value : $value;
 
-            // @property-read string long name of weekday translated according to Carbon locale, in english if no translation available for current language
+                // @property-read string long name of weekday translated according to Carbon locale, in english if no translation available for current language
             case $name === 'dayName':
                 return $this->getTranslatedDayName();
-            // @property-read string short name of weekday translated according to Carbon locale, in english if no translation available for current language
+                // @property-read string short name of weekday translated according to Carbon locale, in english if no translation available for current language
             case $name === 'shortDayName':
                 return $this->getTranslatedShortDayName();
-            // @property-read string very short name of weekday translated according to Carbon locale, in english if no translation available for current language
+                // @property-read string very short name of weekday translated according to Carbon locale, in english if no translation available for current language
             case $name === 'minDayName':
                 return $this->getTranslatedMinDayName();
-            // @property-read string long name of month translated according to Carbon locale, in english if no translation available for current language
+                // @property-read string long name of month translated according to Carbon locale, in english if no translation available for current language
             case $name === 'monthName':
                 return $this->getTranslatedMonthName();
-            // @property-read string short name of month translated according to Carbon locale, in english if no translation available for current language
+                // @property-read string short name of month translated according to Carbon locale, in english if no translation available for current language
             case $name === 'shortMonthName':
                 return $this->getTranslatedShortMonthName();
-            // @property-read string lowercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language
+                // @property-read string lowercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language
             case $name === 'meridiem':
                 return $this->meridiem(true);
-            // @property-read string uppercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language
+                // @property-read string uppercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language
             case $name === 'upperMeridiem':
                 return $this->meridiem();
-            // @property-read int current hour from 1 to 24
+                // @property-read int current hour from 1 to 24
             case $name === 'noZeroHour':
                 return $this->hour ?: 24;
-            // @property int
+                // @property int
             case $name === 'milliseconds':
                 // @property int
             case $name === 'millisecond':
-            // @property int
+                // @property int
             case $name === 'milli':
                 return (int) floor($this->rawFormat('u') / 1000);
 
-            // @property int 1 through 53
+                // @property int 1 through 53
             case $name === 'week':
                 return (int) $this->week();
 
-            // @property int 1 through 53
+                // @property int 1 through 53
             case $name === 'isoWeek':
                 return (int) $this->isoWeek();
 
-            // @property int year according to week format
+                // @property int year according to week format
             case $name === 'weekYear':
                 return (int) $this->weekYear();
 
-            // @property int year according to ISO week format
+                // @property int year according to ISO week format
             case $name === 'isoWeekYear':
                 return (int) $this->isoWeekYear();
 
-            // @property-read int 51 through 53
+                // @property-read int 51 through 53
             case $name === 'weeksInYear':
                 return $this->weeksInYear();
 
-            // @property-read int 51 through 53
+                // @property-read int 51 through 53
             case $name === 'isoWeeksInYear':
                 return $this->isoWeeksInYear();
 
-            // @property-read int 1 through 5
+                // @property-read int 1 through 5
             case $name === 'weekOfMonth':
                 return (int) ceil($this->day / static::DAYS_PER_WEEK);
 
-            // @property-read int 1 through 5
+                // @property-read int 1 through 5
             case $name === 'weekNumberInMonth':
                 return (int) ceil(($this->day + $this->avoidMutation()->startOfMonth()->dayOfWeekIso - 1) / static::DAYS_PER_WEEK);
 
-            // @property-read int 0 through 6
+                // @property-read int 0 through 6
             case $name === 'firstWeekDay':
                 return $this->localTranslator ? ($this->getTranslationMessage('first_day_of_week') ?? 0) : static::getWeekStartsAt();
 
-            // @property-read int 0 through 6
+                // @property-read int 0 through 6
             case $name === 'lastWeekDay':
                 return $this->localTranslator ? (($this->getTranslationMessage('first_day_of_week') ?? 0) + static::DAYS_PER_WEEK - 1) % static::DAYS_PER_WEEK : static::getWeekEndsAt();
 
-            // @property int 1 through 366
+                // @property int 1 through 366
             case $name === 'dayOfYear':
                 return 1 + (int) ($this->rawFormat('z'));
 
-            // @property-read int 365 or 366
+                // @property-read int 365 or 366
             case $name === 'daysInYear':
                 return $this->isLeapYear() ? 366 : 365;
 
-            // @property int does a diffInYears() with default parameters
+                // @property int does a diffInYears() with default parameters
             case $name === 'age':
                 return $this->diffInYears();
 
-            // @property-read int the quarter of this instance, 1 - 4
-            // @call isSameUnit
+                // @property-read int the quarter of this instance, 1 - 4
+                // @call isSameUnit
             case $name === 'quarter':
                 return (int) ceil($this->month / static::MONTHS_PER_QUARTER);
 
-            // @property-read int the decade of this instance
-            // @call isSameUnit
+                // @property-read int the decade of this instance
+                // @call isSameUnit
             case $name === 'decade':
                 return (int) ceil($this->year / static::YEARS_PER_DECADE);
 
-            // @property-read int the century of this instance
-            // @call isSameUnit
+                // @property-read int the century of this instance
+                // @call isSameUnit
             case $name === 'century':
                 $factor = 1;
                 $year = $this->year;
@@ -1001,8 +1002,8 @@ trait Date
 
                 return (int) ($factor * ceil($year / static::YEARS_PER_CENTURY));
 
-            // @property-read int the millennium of this instance
-            // @call isSameUnit
+                // @property-read int the millennium of this instance
+                // @call isSameUnit
             case $name === 'millennium':
                 $factor = 1;
                 $year = $this->year;
@@ -1013,46 +1014,46 @@ trait Date
 
                 return (int) ($factor * ceil($year / static::YEARS_PER_MILLENNIUM));
 
-            // @property int the timezone offset in seconds from UTC
+                // @property int the timezone offset in seconds from UTC
             case $name === 'offset':
                 return $this->getOffset();
 
-            // @property int the timezone offset in minutes from UTC
+                // @property int the timezone offset in minutes from UTC
             case $name === 'offsetMinutes':
                 return $this->getOffset() / static::SECONDS_PER_MINUTE;
 
-            // @property int the timezone offset in hours from UTC
+                // @property int the timezone offset in hours from UTC
             case $name === 'offsetHours':
                 return $this->getOffset() / static::SECONDS_PER_MINUTE / static::MINUTES_PER_HOUR;
 
-            // @property-read bool daylight savings time indicator, true if DST, false otherwise
+                // @property-read bool daylight savings time indicator, true if DST, false otherwise
             case $name === 'dst':
                 return $this->rawFormat('I') === '1';
 
-            // @property-read bool checks if the timezone is local, true if local, false otherwise
+                // @property-read bool checks if the timezone is local, true if local, false otherwise
             case $name === 'local':
                 return $this->getOffset() === $this->avoidMutation()->setTimezone(date_default_timezone_get())->getOffset();
 
-            // @property-read bool checks if the timezone is UTC, true if UTC, false otherwise
+                // @property-read bool checks if the timezone is UTC, true if UTC, false otherwise
             case $name === 'utc':
                 return $this->getOffset() === 0;
 
-            // @property CarbonTimeZone $timezone the current timezone
-            // @property CarbonTimeZone $tz alias of $timezone
+                // @property CarbonTimeZone $timezone the current timezone
+                // @property CarbonTimeZone $tz alias of $timezone
             case $name === 'timezone' || $name === 'tz':
                 return CarbonTimeZone::instance($this->getTimezone());
 
-            // @property-read string $timezoneName the current timezone name
-            // @property-read string $tzName alias of $timezoneName
+                // @property-read string $timezoneName the current timezone name
+                // @property-read string $tzName alias of $timezoneName
             case $name === 'timezoneName' || $name === 'tzName':
                 return $this->getTimezone()->getName();
 
-            // @property-read string locale of the current instance
+                // @property-read string locale of the current instance
             case $name === 'locale':
                 return $this->getTranslatorLocale();
 
             default:
-                $macro = $this->getLocalMacro('get'.ucfirst($name));
+                $macro = $this->getLocalMacro('get' . ucfirst($name));
 
                 if ($macro) {
                     return $this->executeCallableWithContext($macro);
@@ -1146,7 +1147,7 @@ trait Date
                     $value -= static::MICROSECONDS_PER_SECOND;
                 }
 
-                $this->modify($this->rawFormat('H:i:s.').str_pad((string) round($value), 6, '0', STR_PAD_LEFT));
+                $this->modify($this->rawFormat('H:i:s.') . str_pad((string) round($value), 6, '0', STR_PAD_LEFT));
 
                 break;
 
@@ -1214,7 +1215,7 @@ trait Date
                 break;
 
             default:
-                $macro = $this->getLocalMacro('set'.ucfirst($name));
+                $macro = $this->getLocalMacro('set' . ucfirst($name));
 
                 if ($macro) {
                     $this->executeCallableWithContext($macro, $value);
@@ -1234,8 +1235,9 @@ trait Date
 
     protected function getTranslatedFormByRegExp($baseKey, $keySuffix, $context, $subKey, $defaultValue)
     {
-        $key = $baseKey.$keySuffix;
-        $standaloneKey = "${key}_standalone";
+        $key = $baseKey . $keySuffix;
+        //        $standaloneKey = "{$key}_standalone";
+        $standaloneKey = "{$key}_standalone";
         $baseTranslation = $this->getTranslationMessage($key);
 
         if ($baseTranslation instanceof Closure) {
@@ -1244,7 +1246,7 @@ trait Date
 
         if (
             $this->getTranslationMessage("$standaloneKey.$subKey") &&
-            (!$context || ($regExp = $this->getTranslationMessage("${baseKey}_regexp")) && !preg_match($regExp, $context))
+            (!$context || ($regExp = $this->getTranslationMessage("{$baseKey}_regexp")) && !preg_match($regExp, $context))
         ) {
             $key = $standaloneKey;
         }
@@ -1983,7 +1985,7 @@ trait Date
                 'YYYY' => ['getPaddedUnit', ['year', 4]],
                 'YYYYY' => ['getPaddedUnit', ['year', 5]],
                 'YYYYYY' => function (CarbonInterface $date) {
-                    return ($date->year < 0 ? '' : '+').$date->getPaddedUnit('year', 6);
+                    return ($date->year < 0 ? '' : '+') . $date->getPaddedUnit('year', 6);
                 },
                 'z' => ['rawFormat', ['T']],
                 'zz' => 'tzName',
@@ -2007,7 +2009,7 @@ trait Date
      */
     public function getPaddedUnit($unit, $length = 2, $padString = '0', $padType = STR_PAD_LEFT)
     {
-        return ($this->$unit < 0 ? '-' : '').str_pad((string) abs($this->$unit), $length, $padString, $padType);
+        return ($this->$unit < 0 ? '-' : '') . str_pad((string) abs($this->$unit), $length, $padString, $padType);
     }
 
     /**
@@ -2042,7 +2044,7 @@ trait Date
         $index = $hour < 12 ? 0 : 1;
 
         if ($isLower) {
-            $key = 'meridiem.'.($index + 2);
+            $key = 'meridiem.' . ($index + 2);
             $result = $this->translate($key);
 
             if ($result !== $key) {
@@ -2141,12 +2143,12 @@ trait Date
                     $formats[strtoupper($code)] ?? ''
                 );
                 $rest = mb_substr($format, $i + mb_strlen($code));
-                $format = mb_substr($format, 0, $i).$sequence.$rest;
+                $format = mb_substr($format, 0, $i) . $sequence . $rest;
                 $length = mb_strlen($format);
-                $input = $sequence.$rest;
+                $input = $sequence . $rest;
             }
 
-            if (preg_match('/^'.CarbonInterface::ISO_FORMAT_REGEXP.'/', $input, $match)) {
+            if (preg_match('/^' . CarbonInterface::ISO_FORMAT_REGEXP . '/', $input, $match)) {
                 $code = $match[0];
 
                 if ($units === null) {
@@ -2167,7 +2169,7 @@ trait Date
                     $sequence = $this->$sequence ?? $code;
                 }
 
-                $format = mb_substr($format, 0, $i).$sequence.mb_substr($format, $i + mb_strlen($code));
+                $format = mb_substr($format, 0, $i) . $sequence . mb_substr($format, $i + mb_strlen($code));
                 $i += mb_strlen((string) $sequence) - 1;
                 $length = mb_strlen($format);
                 $char = $sequence;
@@ -2297,14 +2299,14 @@ trait Date
                     ];
                 }
 
-                $isoFormat .= '['.$this->rawFormat($char).']';
+                $isoFormat .= '[' . $this->rawFormat($char) . ']';
                 $context .= $contextReplacements[$char] ?? ' ';
 
                 continue;
             }
 
             if ($replacement instanceof Closure) {
-                $replacement = '['.$replacement($this).']';
+                $replacement = '[' . $replacement($this) . ']';
                 $isoFormat .= $replacement;
                 $context .= $replacement;
 
@@ -2454,7 +2456,7 @@ trait Date
             return 'millennia';
         }
 
-        return "${unit}s";
+        return "{$unit}s";
     }
 
     protected function executeCallable($macro, ...$parameters)
@@ -2546,17 +2548,17 @@ trait Date
             }
 
             switch ($word) {
-                // @call is Check if the current instance has UTC timezone. (Both isUtc and isUTC cases are valid.)
+                    // @call is Check if the current instance has UTC timezone. (Both isUtc and isUTC cases are valid.)
                 case 'Utc':
                 case 'UTC':
                     return $this->utc;
-                // @call is Check if the current instance has non-UTC timezone.
+                    // @call is Check if the current instance has non-UTC timezone.
                 case 'Local':
                     return $this->local;
-                // @call is Check if the current instance is a valid date.
+                    // @call is Check if the current instance is a valid date.
                 case 'Valid':
                     return $this->year !== 0;
-                // @call is Check if the current instance is in a daylight saving time.
+                    // @call is Check if the current instance is in a daylight saving time.
                 case 'DST':
                     return $this->dst;
             }
@@ -2579,7 +2581,7 @@ trait Date
             if (str_starts_with($unit, 'Real')) {
                 $unit = static::singularUnit(substr($unit, 4));
 
-                return $this->{"${action}RealUnit"}($unit, ...$parameters);
+                return $this->{"{$action}RealUnit"}($unit, ...$parameters);
             }
 
             if (preg_match('/^(Month|Quarter|Year|Decade|Century|Centurie|Millennium|Millennia)s?(No|With|Without|WithNo)Overflow$/', $unit, $match)) {
@@ -2591,7 +2593,7 @@ trait Date
         }
 
         if (static::isModifiableUnit($unit)) {
-            return $this->{"${action}Unit"}($unit, $parameters[0] ?? 1, $overflow);
+            return $this->{"{$action}Unit"}($unit, $parameters[0] ?? 1, $overflow);
         }
 
         $sixFirstLetters = substr($unit, 0, 6);

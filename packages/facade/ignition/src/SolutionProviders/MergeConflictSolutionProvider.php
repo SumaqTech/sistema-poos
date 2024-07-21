@@ -12,11 +12,11 @@ class MergeConflictSolutionProvider implements HasSolutionsForThrowable
 {
     public function canSolve(Throwable $throwable): bool
     {
-        if (! ($throwable instanceof ParseError)) {
+        if (!($throwable instanceof ParseError)) {
             return false;
         }
 
-        if (! $this->hasMergeConflictExceptionMessage($throwable)) {
+        if (!$this->hasMergeConflictExceptionMessage($throwable)) {
             return false;
         }
 
@@ -49,7 +49,7 @@ class MergeConflictSolutionProvider implements HasSolutionsForThrowable
 
     protected function getCurrentBranch(string $directory): string
     {
-        $branch = "'".trim(shell_exec("cd ${directory}; git branch | grep \\* | cut -d ' ' -f2"))."'";
+        $branch = "'" . trim(shell_exec("cd {$directory}; git branch | grep \\* | cut -d ' ' -f2")) . "'";
 
         if ($branch === "''") {
             $branch = 'current branch';
