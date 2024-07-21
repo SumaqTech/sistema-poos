@@ -58,7 +58,11 @@ class WarehousesTableController extends Controller
             ->addIndexColumn()
             ->addColumn('name', function ($warehouse) {
                 return '<a class="font-weight-bold" href="' . route('biller.products.index') . '?rel_type=2&rel_id=' . $warehouse->id . '">' . $warehouse->title . '</a>';
-            })->addColumn('total', function ($warehouse) {
+            })
+            ->addColumn('loca', function ($warehouse) {
+                return $warehouse->loca;
+            })
+            ->addColumn('total', function ($warehouse) {
                 return numberFormat($warehouse->products->sum('qty'));
             })
             ->addColumn('worth', function ($warehouse) {

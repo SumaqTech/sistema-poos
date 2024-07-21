@@ -37,6 +37,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
+                                <p>@if(request('rel_type') == 2){{trans('warehouses.loca')}}@else {{trans('productcategories.title')}} @endif </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>{{$segment['loca']}}</p>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-sm-2">
                                 <p>{{trans('productcategories.extra')}}</p>
                             </div>
                             <div class="col-sm-6">

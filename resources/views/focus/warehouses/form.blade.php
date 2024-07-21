@@ -5,6 +5,12 @@
     </div>
 </div>
 <div class='form-group'>
+    {{ Form::label( 'loca', trans('warehouses.loca'),['class' => 'col-lg-2 control-label']) }}
+    <div class='col-lg-10'>
+        {{ Form::text('loca', null, ['class' => 'form-control box-size', 'placeholder' => trans('warehouses.loca')]) }}
+    </div>
+</div>
+<div class='form-group'>
     {{ Form::label( 'extra', trans('warehouses.extra'),['class' => 'col-lg-2 control-label']) }}
     <div class='col-lg-10'>
         {{ Form::text('extra', null, ['class' => 'form-control box-size', 'placeholder' => trans('warehouses.extra')]) }}

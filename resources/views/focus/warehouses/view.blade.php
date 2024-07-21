@@ -47,6 +47,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-3 border-blue-grey border-lighten-5  p-1">
+                                            <p>{{trans('warehouses.loca')}} </p>
+                                        </div>
+                                        <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">
+                                            <p>   {{$warehouse->loca}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 border-blue-grey border-lighten-5  p-1">
                                             <p>{{trans('warehouses.extra')}}</p>
                                         </div>
                                         <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">

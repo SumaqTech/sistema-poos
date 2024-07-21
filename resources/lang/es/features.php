@@ -2,8 +2,8 @@
 return [
 'pos'=>'POS',
 'sales'=>'Ventas',
-'stock'=>'Gerente de Stock',
-'crm'=>'CRM',
+'stock'=>'Gestion de Bienes',
+'crm'=>'Gestion de Clientes',
 'project_tasks'=>'Proyecto y Tareas',
 'project_management'=>'Gestión de proyectos',
 'tasks_management'=>'Gestión de tareas',
@@ -17,5 +17,5 @@ return [
 'small'=>'Pequeño equipo - 3 usuarios',
 'mid'=>'Equipo medio - 10 usuarios',
 'big'=>'Gran equipo: usuarios ilimitados',
-'hrm'=>'HRM',
+'hrm'=>'Gestion de Personal',
 ];

@@ -66,7 +66,10 @@ class SupplierRepository extends BaseRepository
         if (!empty($input['picture'])) {
             $input['picture'] = $this->uploadPicture($input['picture']);
         }
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
+        
         $result=Supplier::create($input);
         if($result ) {
             return $result;
@@ -89,7 +92,10 @@ class SupplierRepository extends BaseRepository
 
             $input['picture'] = $this->uploadPicture($input['picture']);
         }
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
+        
         if ($supplier->update($input))
             return true;
 

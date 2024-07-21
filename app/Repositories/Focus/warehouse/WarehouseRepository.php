@@ -41,10 +41,14 @@ class WarehouseRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
+    
         if (Warehouse::create($input)) {
             return true;
         }
+    
         throw new GeneralException(trans('exceptions.backend.warehouses.create_error'));
     }
 
@@ -58,7 +62,10 @@ class WarehouseRepository extends BaseRepository
      */
     public function update(Warehouse $warehouse, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
+        
     	if ($warehouse->update($input))
             return true;
 
