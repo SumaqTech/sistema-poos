@@ -24,14 +24,14 @@
                                                               href="#"><i class="ft-menu"></i></a></li>
                     @include('core.partials.mega')
                     @permission('pos')
-                    <li class="nav-item ">
+                    <li hidden class="nav-item ">
                         <a href="{{route('biller.invoices.pos')}}" class="btn  btn-info round mt_6">
                             <i class="ficon ft-shopping-cart"></i>{{trans('pos.pos')}} </a></li>
                     @endauth
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#" title="Press F11 or Fn+F11 to Get Full Screen" alt="Press F11 or Fn+F11 to Get Full Screen"><i
                                     class="ficon ft-maximize"></i></a></li>
 
-                    <li class="dropdown">
+                    <li hidden class="dropdown">
                         <a href="#" class="nav-link " data-toggle="dropdown" role="button"
                            aria-expanded="false">
                             <i class="ficon ft-toggle-left"></i> </a>
@@ -50,7 +50,7 @@
 
                 <ul class="nav navbar-nav float-right">
                     @if (config('locale.status') && count(config('locale.languages')) > 1)
-                        <li class="dropdown">
+                        <li hidden class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">
                                 {{ trans('menus.language-picker.language') }}
@@ -72,7 +72,7 @@
 
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
+                    <li hidden class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown">@if(session('clock', false))
                                 <i
                                         class="ficon ft-clock spinner"></i>
@@ -501,7 +501,7 @@
             @endif
 
             @if(access()->allow('transaction-manage') || access()->allow('account-manage'))
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                <li hidden class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
                                                                       data-toggle="dropdown"><i
                                 class="icon-calculator"></i><span>{{trans('general.finance')}}</span></a>
                     <ul class="dropdown-menu">
@@ -556,7 +556,7 @@
                     </ul>
                 </li>  @endif
             @if(access()->allow('project-manage') || access()->allow('task-manage'))
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                <li hidden class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
                                                                       data-toggle="dropdown"><i
                                 class="icon-briefcase"></i><span>{{trans('features.project_tasks')}}</span></a>
                     <ul class="dropdown-menu">
