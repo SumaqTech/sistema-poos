@@ -156,7 +156,7 @@
                             class="ft-home"></i><span>{{  trans('navs.frontend.dashboard') }}</span></a>
             </li>
             @if(access()->allow('invoice-manage') || access()->allow('quote-quote'))
-                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                <li hidden class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
                                                                       data-toggle="dropdown"><i
                                 class="icon-basket"></i><span>{{trans('features.sales')}}</span></a>
                     <ul class="dropdown-menu">
