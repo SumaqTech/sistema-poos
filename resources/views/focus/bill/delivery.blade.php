@@ -102,7 +102,7 @@
     <table width="100%">
         <tr>
             <td class="logo_box">
-                <img src="{{ Storage::disk('public')->url('app/public/img/company/' . config('core.logo')) }}"
+                <img src="{{ Storage::disk('public')->url('/img/company/' . config('core.logo')) }}"
                      class="top_logo" width="200">
             </td>
 
@@ -246,7 +246,7 @@
             <td style="width: 300pt;margin: 5pt;  text-align: center;">
                 <div class="sign">{{trans('general.authorized_person')}}</div>
                 <div class="sign"><img
-                            src="{{ Storage::disk('public')->url('app/public/img/signs/' . $invoice->user->signature) }}"
+                            src="{{ Storage::disk('public')->url('/img/signs/' . $invoice->user->signature) }}"
                             width="160"
                             height="50" border="0" alt=""></div>
                 <div class="sign">({{$invoice->user->first_name}} {{$invoice->user->last_name}})</div>

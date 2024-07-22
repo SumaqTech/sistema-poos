@@ -42,7 +42,9 @@ class EventRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $input['start']=date_for_database($input['start']).' '.$input['time_from'];
         $input['end']=date_for_database($input['end']).' '.$input['time_to'];
         unset( $input['time_from']);
@@ -66,7 +68,9 @@ class EventRepository extends BaseRepository
      */
     public function update(Event $event, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($event->update($input))
             return true;
 

@@ -429,8 +429,15 @@ function numberFormat($number = 0, $currency = null, $precision_point_off = fals
 
 function dateFormat($date = '', $local = false)
 {
-    if ($local AND strtotime($date)) return date($local, strtotime($date));
-    if (strtotime($date)) return date(config('core.main_date_format'), strtotime($date));
+    // Verificar si la fecha es válida
+    if (!empty($date) && strtotime($date)) {
+        if ($local) {
+            return date($local, strtotime($date));
+        }
+        return date(config('core.main_date_format'), strtotime($date));
+    }
+
+    // Retornar la fecha actual en el formato configurado si la fecha proporcionada no es válida
     return date(config('core.main_date_format'));
 }
 

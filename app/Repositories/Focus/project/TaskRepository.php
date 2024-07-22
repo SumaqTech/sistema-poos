@@ -83,7 +83,9 @@ class TaskRepository extends BaseRepository
         $input['duedate'] = datetime_for_database($input['duedate'] . ' ' . $input['time_to']);
         unset($input['time_from']);
         unset($input['time_to']);
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $result = Task::create($input);
 
 
@@ -158,7 +160,9 @@ class TaskRepository extends BaseRepository
         $input['duedate'] = datetime_for_database($input['duedate'] . ' ' . $input['time_to']);
         unset($input['time_from']);
         unset($input['time_to']);
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $result = $task->update($input);
         if ($result) {
             ProjectRelations::where(['related' => 4, 'rid' => $task->id])->delete();

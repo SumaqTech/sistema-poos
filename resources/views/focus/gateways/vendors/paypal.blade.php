@@ -52,7 +52,7 @@
 
                             echo $title . ' ' . $fee ?></h5><img class="bg-white round mt-1"
                                                                  style="max-width:30rem;max-height:6rem"
-                                                                 src="{{ Storage::disk('public')->url('app/public/img/gateway_logo/' . $row->config['user_gateway_id'].'.png') }}">
+                                                                 src="{{ Storage::disk('public')->url('/img/gateway_logo/' . $row->config['user_gateway_id'].'.png') }}">
                         <input type="hidden" class="form-control" name="gateway" value="<?= $cid ?>">
                     </div>
                     <div class="form-group">

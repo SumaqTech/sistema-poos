@@ -79,7 +79,9 @@ class ProductRepository extends BaseRepository
 
         DB::beginTransaction();
         $product_des = strip_tags($input['main']['product_des'], config('general.allowed'));
-        $input['main'] = array_map('strip_tags', $input['main']);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $input['main']['product_des'] = $product_des;
         $product = Product::create($input['main']);
         if ($product->id) {
@@ -140,81 +142,125 @@ class ProductRepository extends BaseRepository
      * return bool
      */
     public function update(Product $product, array $input)
-    {
-        DB::beginTransaction();
-        $pv_i = $input['main']['pv_id'];
-        unset($input['main']['pv_id']);
-        $input['main'] = array_map('strip_tags', $input['main']);
-        if(!$input['main']['sub_cat_id']) unset($input['main']['sub_cat_id']);
-        if ($product->update($input['main'])) {
-            // dd($product->id);
-            $variations = array();
-            $varriation_new = array();
-            $i = 0;
-            $parent_id = 0;
-            foreach ($input['variation']['warehouse_id'] as $key => $value) {
-                if (!empty($input['variation']['expiry'][$key])) {
-                    if (strtotime(date_for_database($input['variation']['expiry'][$key])) > strtotime(date('Y-m-d'))) $input['variation']['expiry'][$key] = date_for_database($input['variation']['expiry'][$key]);
+{
+    DB::beginTransaction();
+    $pv_i = $input['main']['pv_id'];
+    unset($input['main']['pv_id']);
+
+    // Procesar cada elemento en $input['main'] con array_map
+    $input['main'] = array_map(function($value) {
+        return is_string($value) ? strip_tags($value) : $value;
+    }, $input['main']);
+
+    if (!$input['main']['sub_cat_id']) unset($input['main']['sub_cat_id']);
+    
+    if ($product->update($input['main'])) {
+        $variations = array();
+        $varriation_new = array();
+        $i = 0;
+        $parent_id = 0;
+
+        foreach ($input['variation']['warehouse_id'] as $key => $value) {
+            if (!empty($input['variation']['expiry'][$key])) {
+                if (strtotime(date_for_database($input['variation']['expiry'][$key])) > strtotime(date('Y-m-d'))) {
+                    $input['variation']['expiry'][$key] = date_for_database($input['variation']['expiry'][$key]);
                 }
-                if ($input['variation']['v_id'][$key] > 0) {
-                    if (!empty($input['variation']['image'][$key])) {
-                        $input['variation']['image'][$key] = $this->uploadFile($input['variation']['image'][$key]);
-                        $variations[] = array('id' => $input['variation']['v_id'][$key], 'product_id' => $product->id, 'variation_class' => 0, 'name' => strip_tags($input['variation']['variation_name'][$key]), 'warehouse_id' => $input['variation']['warehouse_id'][$key], 'code' => $input['variation']['code'][$key], 'price' => numberClean($input['variation']['price'][$key]), 'purchase_price' => numberClean($input['variation']['purchase_price'][$key]), 'disrate' => numberClean($input['variation']['disrate'][$key]), 'qty' => numberClean($input['variation']['qty'][$key]), 'alert' => numberClean($input['variation']['alert'][$key]), 'image' => $input['variation']['image'][$key], 'barcode' => $input['variation']['barcode'][$key], 'expiry' => $input['variation']['expiry'][$key], 'ins' => $product->ins);
-                    } else {
-                        $variations[] = array('id' => $input['variation']['v_id'][$key], 'product_id' => $product->id, 'variation_class' => 0, 'name' => strip_tags($input['variation']['variation_name'][$key]), 'warehouse_id' => $input['variation']['warehouse_id'][$key], 'code' => $input['variation']['code'][$key], 'price' => numberClean($input['variation']['price'][$key]), 'purchase_price' => numberClean($input['variation']['purchase_price'][$key]), 'disrate' => numberClean($input['variation']['disrate'][$key]), 'qty' => numberClean($input['variation']['qty'][$key]), 'alert' => numberClean($input['variation']['alert'][$key]), 'barcode' => $input['variation']['barcode'][$key], 'expiry' => $input['variation']['expiry'][$key], 'ins' => $product->ins);
-                    }
-                } else {
-                    if (!empty($input['variation']['image'][$key])) {
+            }
 
-                        $input['variation']['image'][$key] = $this->uploadFile($input['variation']['image'][$key]);
-                    } else {
-                        $input['variation']['image'][$key] = 'example.png';
-                    }
-                    $varriation_new[] = array('product_id' => $product->id, 'parent_id' => 1, 'variation_class' => 0, 'name' => strip_tags($input['variation']['variation_name'][$key]), 'warehouse_id' => $input['variation']['warehouse_id'][$key], 'code' => $input['variation']['code'][$key], 'price' => numberClean($input['variation']['price'][$key]), 'purchase_price' => numberClean($input['variation']['purchase_price'][$key]), 'disrate' => numberClean($input['variation']['disrate'][$key]), 'qty' => numberClean($input['variation']['qty'][$key]), 'alert' => numberClean($input['variation']['alert'][$key]), 'image' => $input['variation']['image'][$key], 'barcode' => $input['variation']['barcode'][$key], 'expiry' => $input['variation']['expiry'][$key], 'ins' => $product->ins);
+            $variation_name = $input['variation']['variation_name'][$key] ?? '';
+            $image = $input['variation']['image'][$key] ?? 'example.png';
+
+            if ($input['variation']['v_id'][$key] > 0) {
+                if (!empty($input['variation']['image'][$key])) {
+                    $input['variation']['image'][$key] = $this->uploadFile($input['variation']['image'][$key]);
                 }
-                $i++;
-            }
-
-            $update_variation = new ProductVariation;
-            $index = 'id';
-            Batch::update($update_variation, $variations, $index);
-            if (isset($varriation_new[0])) {
-                ProductVariation::insert($varriation_new);
-            }
-            if (isset($input['variation']['remove_v'])) {
-                ProductVariation::whereIn('id', $input['variation']['remove_v'])->delete();
-            }
-
-            if (isset($input['serial']['product_serial'])) {
-                $serial = array();
-                foreach ($input['serial']['product_serial'] as $key => $value) {
-                    $serial[] = array('rel_type' => 2, 'rel_id' => 0, 'ref_id' => $pv_i, 'value' => strip_tags($value));
+                
+                $variations[] = array(
+                    'id' => $input['variation']['v_id'][$key],
+                    'product_id' => $product->id,
+                    'variation_class' => 0,
+                    'name' => is_string($variation_name) ? strip_tags($variation_name) : $variation_name,
+                    'warehouse_id' => $input['variation']['warehouse_id'][$key],
+                    'code' => $input['variation']['code'][$key],
+                    'price' => numberClean($input['variation']['price'][$key]),
+                    'purchase_price' => numberClean($input['variation']['purchase_price'][$key]),
+                    'disrate' => numberClean($input['variation']['disrate'][$key]),
+                    'qty' => numberClean($input['variation']['qty'][$key]),
+                    'alert' => numberClean($input['variation']['alert'][$key]),
+                    'image' => $input['variation']['image'][$key],
+                    'barcode' => $input['variation']['barcode'][$key],
+                    'expiry' => $input['variation']['expiry'][$key],
+                    'ins' => $product->ins
+                );
+            } else {
+                $image = $input['variation']['image'][$key] ?? 'example.png';
+                if (!empty($input['variation']['image'][$key])) {
+                    $image = $this->uploadFile($input['variation']['image'][$key]);
                 }
-                ProductMeta::insert($serial);
+
+                $varriation_new[] = array(
+                    'product_id' => $product->id,
+                    'parent_id' => 1,
+                    'variation_class' => 0,
+                    'name' => is_string($variation_name) ? strip_tags($variation_name) : $variation_name,
+                    'warehouse_id' => $input['variation']['warehouse_id'][$key],
+                    'code' => $input['variation']['code'][$key],
+                    'price' => numberClean($input['variation']['price'][$key]),
+                    'purchase_price' => numberClean($input['variation']['purchase_price'][$key]),
+                    'disrate' => numberClean($input['variation']['disrate'][$key]),
+                    'qty' => numberClean($input['variation']['qty'][$key]),
+                    'alert' => numberClean($input['variation']['alert'][$key]),
+                    'image' => $image,
+                    'barcode' => $input['variation']['barcode'][$key],
+                    'expiry' => $input['variation']['expiry'][$key],
+                    'ins' => $product->ins
+                );
             }
-
-            if (is_array($input['custom_field'])) {
-                $input['custom_field']['ins'] = $product->ins;
-                update_custom_field($input['custom_field'], $product->id, 3);
-            }
-
-            if (isset($input['product_serial']['product_serial_e'])) {
-                $update_serial = new ProductMeta();
-                $index = 'id';
-                $serials = array();
-                foreach ($input['product_serial']['product_serial_e'] as $key => $value) {
-                    $serials[] = array('id' => $key, 'value' => strip_tags($value));
-                }
-                Batch::update($update_serial, $serials, $index);
-            }
-
-
-            DB::commit();
-            return true;
+            $i++;
         }
 
-        throw new GeneralException(trans('exceptions.backend.products.update_error'));
+        $update_variation = new ProductVariation;
+        $index = 'id';
+        Batch::update($update_variation, $variations, $index);
+
+        if (isset($varriation_new[0])) {
+            ProductVariation::insert($varriation_new);
+        }
+
+        if (isset($input['variation']['remove_v'])) {
+            ProductVariation::whereIn('id', $input['variation']['remove_v'])->delete();
+        }
+
+        if (isset($input['serial']['product_serial'])) {
+            $serial = array();
+            foreach ($input['serial']['product_serial'] as $key => $value) {
+                $serial[] = array('rel_type' => 2, 'rel_id' => 0, 'ref_id' => $pv_i, 'value' => is_string($value) ? strip_tags($value) : $value);
+            }
+            ProductMeta::insert($serial);
+        }
+
+        if (is_array($input['custom_field'])) {
+            $input['custom_field']['ins'] = $product->ins;
+            update_custom_field($input['custom_field'], $product->id, 3);
+        }
+
+        if (isset($input['product_serial']['product_serial_e'])) {
+            $update_serial = new ProductMeta();
+            $index = 'id';
+            $serials = array();
+            foreach ($input['product_serial']['product_serial_e'] as $key => $value) {
+                $serials[] = array('id' => $key, 'value' => is_string($value) ? strip_tags($value) : $value);
+            }
+            Batch::update($update_serial, $serials, $index);
+        }
+
+        DB::commit();
+        return true;
     }
+
+    throw new GeneralException(trans('exceptions.backend.products.update_error'));
+}
+
 
     /**
      * For deleting the respective model from storage

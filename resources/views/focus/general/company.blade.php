@@ -103,7 +103,7 @@
 
                                     {{ Form::label( 'icon', trans('business.favicon'),['class' => 'control-label']) }}
                                     <p class="mb-2"><br><img class="img-fluid"
-                                                             src="{{Storage::disk('public')->url('app/public/img/company/ico/' . @$company['icon'])}}"
+                                                             src="{{Storage::disk('public')->url('/img/company/ico/' . @$company['icon'])}}"
                                                              alt="Business favicon"></p>
                                     {!! Form::file('icon', array('class'=>'input mb-1' )) !!}
                                     <small>{{trans('hrms.blank_field')}}<br>only .ico format accepted
@@ -113,7 +113,7 @@
                                     <hr>
                                     {{ Form::label( 'theme_logo', trans('business.theme_logo'),['class' => 'control-label']) }}
                                     <p class="mb-2"><br><img class="img-fluid avatar-100"
-                                                             src="{{Storage::disk('public')->url('app/public/img/company/theme/' . @$company['theme_logo'])}}"
+                                                             src="{{Storage::disk('public')->url('/img/company/theme/' . @$company['theme_logo'])}}"
                                                              alt="Business header logo"></p>
                                     {!! Form::file('theme_logo', array('class'=>'input mb-1' )) !!}
                                     <small>{{trans('hrms.blank_field')}}<br>only jpg|png format accepted.<br>Recommended
@@ -125,7 +125,7 @@
                                     <hr>
                                     {{ Form::label( 'logo', trans('business.invoice_logo'),['class' => 'control-label']) }}
                                     <p class="mb-2"><br><img class="img-fluid avatar-lg"
-                                                             src="{{Storage::disk('public')->url('app/public/img/company/' . @$company['logo'])}}"
+                                                             src="{{Storage::disk('public')->url('/img/company/' . @$company['logo'])}}"
                                                              alt="Business Logo"></p>
                                     {!! Form::file('logo', array('class'=>'input mb-2' )) !!}
                                     <small>{{trans('hrms.blank_field')}}<br>only jpg|png format accepted. <br>Recommended

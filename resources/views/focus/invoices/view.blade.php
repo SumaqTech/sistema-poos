@@ -207,7 +207,7 @@
                         <div id="invoice-company-details" class="row">
                             <div class="col-md-6 col-sm-12 text-center text-md-left">{{trans('general.our_info')}}
                                 <div class="">
-                                    <img src="{{ Storage::disk('public')->url('app/public/img/company/' . config('core.logo')) }}"
+                                    <img src="{{ Storage::disk('public')->url('/img/company/' . config('core.logo')) }}"
                                          alt="company logo" class="avatar-100 img-responsive"/>
                                     <div class="media-body"><br>
                                         <ul class="px-0 list-unstyled">
@@ -516,7 +516,7 @@
                                     </div>
                                     <div class="text-center">
                                         <p>{{trans('general.authorized_person')}}</p>
-                                        <img src="{{ Storage::disk('public')->url('app/public/img/signs/' . $invoice->user->signature) }}"
+                                        <img src="{{ Storage::disk('public')->url('/img/signs/' . $invoice->user->signature) }}"
                                              alt="signature" class="height-100 m-2"/>
                                         <h6>{{$invoice->user->first_name}} {{$invoice->user->last_name}}</h6>
 
@@ -613,7 +613,7 @@
                                 <tr>
                                     <td><a data-url="{{route('biller.bill_attachment')}}?op=delete&id={{$row['id']}}"
                                            class="aj_delete red"><i class="btn-sm fa fa-trash"></i></a> <a
-                                                href="{{ Storage::disk('public')->url('app/public/files/' . $row['value']) }}"
+                                                href="{{ Storage::disk('public')->url('/files/' . $row['value']) }}"
                                                 class="purple"><i class="btn-sm fa fa-eye"></i> {{$row['value']}}</a>
                                     </td>
                                 </tr>

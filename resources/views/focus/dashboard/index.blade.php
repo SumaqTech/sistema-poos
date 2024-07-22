@@ -384,7 +384,7 @@
                                             <div class="media-left pr-1">
                                             <span class="avatar avatar-md avatar-online"><img
                                                     class="media-object rounded-circle"
-                                                    src="{{Storage::disk('public')->url('app/public/img/customer/' . $customer->customer->picture)}}">
+                                                    src="{{Storage::disk('public')->url('/img/customer/' . $customer->customer->picture)}}">
                                                 <i></i>
                                             </span>
                                             </div>

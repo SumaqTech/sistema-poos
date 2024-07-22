@@ -3,7 +3,7 @@
 
         <div class="media-left pr-1">
             <span class="avatar avatar-md"><img class="media-object rounded-circle"
-                                                src="{{ Storage::disk('public')->url('app/public/img/users/' . @user_data($message->user_id)->picture) }}"></span>
+                                                src="{{ Storage::disk('public')->url('/img/users/' . @user_data($message->user_id)->picture) }}"></span>
         </div>
 
         <div class="media-body w-100">

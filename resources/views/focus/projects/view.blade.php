@@ -360,7 +360,7 @@
                                             <td>
                                                 <a data-url="{{route('biller.project_attachment')}}?op=delete&id={{$row['id']}}"
                                                    class="aj_delete red"><i class="btn-sm fa fa-trash"></i></a> <a
-                                                        href="{{ Storage::disk('public')->url('app/public/files/' . $row['value']) }}"
+                                                        href="{{ Storage::disk('public')->url('/files/' . $row['value']) }}"
                                                         class="purple"><i
                                                             class="btn-sm fa fa-eye"></i> {{$row['value']}}</a></td>
                                         </tr>
@@ -454,7 +454,7 @@
                                                             <div class="media">
                                                                 <div class="media-left pr-1"><span
                                                                             class="avatar avatar-sm"><img
-                                                                                src="{{ Storage::disk('public')->url('app/public/img/users/' . @$row->picture) }}"><i></i></span>
+                                                                                src="{{ Storage::disk('public')->url('/img/users/' . @$row->picture) }}"><i></i></span>
                                                                 </div>
                                                                 <div class="media-body w-100">
                                                                     <h6 class="media-heading mb-0">{{$row['first_name']}} {{$row['last_name']}}</h6>

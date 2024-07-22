@@ -82,7 +82,9 @@ class ProjectRepository extends BaseRepository
         $input['end_date'] = datetime_for_database($input['end_date'] . ' ' . $input['time_to']);
         unset($input['time_from']);
         unset($input['time_to']);
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $result = Project::create($input);
 
         if ($result) {
@@ -152,7 +154,9 @@ class ProjectRepository extends BaseRepository
         $input['end_date'] = datetime_for_database($input['end_date'] . ' ' . $input['time_to']);
         unset($input['time_from']);
         unset($input['time_to']);
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $result = $project->update($input);
 
 

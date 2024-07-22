@@ -42,7 +42,9 @@ class TransactioncategoryRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Transactioncategory::create($input)) {
             return true;
         }
@@ -59,7 +61,9 @@ class TransactioncategoryRepository extends BaseRepository
      */
     public function update(Transactioncategory $transactioncategory, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($transactioncategory->update($input))
             return true;
 

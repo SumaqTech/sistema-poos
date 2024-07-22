@@ -42,7 +42,9 @@ class CurrencyRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Currency::create($input)) {
             return true;
         }
@@ -59,7 +61,9 @@ class CurrencyRepository extends BaseRepository
      */
     public function update(Currency $currency, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($currency->update($input))
             return true;
 

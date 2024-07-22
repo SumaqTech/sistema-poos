@@ -84,7 +84,7 @@
                     <!-- Invoice Company Details -->
                     <div id="invoice-company-details" class="row mt-2">
                         <div class="col-md-6 col-sm-12 text-xs-center text-md-left"><p></p>
-                            <img src="{{ Storage::disk('public')->url('app/public/img/company/' . $company['logo']) }}"
+                            <img src="{{ Storage::disk('public')->url('/img/company/' . $company['logo']) }}"
                                  class="img-responsive p-1 m-b-2" style="max-height: 120px;">
                             <p class="text-muted">{{trans('general.our_info')}}</p>
 
@@ -508,7 +508,7 @@
                                 </div>
                                 <div class="text-center">
                                     <p><strong>{{trans('general.authorized_person')}}</strong></p>
-                                    <img src="{{ Storage::disk('public')->url('app/public/img/signs/' . $invoice->user->signature) }}"
+                                    <img src="{{ Storage::disk('public')->url('/img/signs/' . $invoice->user->signature) }}"
                                          alt="signature" class="height-100 m-2"/>
                                     <h6>({{$invoice->user->first_name}} {{$invoice->user->last_name}})</h6>
                                 </div>
@@ -574,7 +574,7 @@
                             @foreach($invoice->attachment as $row)
                                 <tr>
                                     <td>
-                                        <a href="{{ Storage::disk('public')->url('app/public/files/' . $row['value']) }}"
+                                        <a href="{{ Storage::disk('public')->url('/files/' . $row['value']) }}"
                                            class="purple"><i class="btn-sm fa fa-eye"></i> {{$row['value']}}</a></td>
                                 </tr>
                             @endforeach
@@ -614,7 +614,7 @@
                                                 class="blue font-medium-2">{{$row['name']}} {{$fee}}</span></span><br>
 
                                     <img class="mt-1 bg-white round" style="max-width:20rem;max-height:10rem"
-                                         src="{{ Storage::disk('public')->url('app/public/img/gateway_logo/' . $row['id'].'.png') }}">
+                                         src="{{ Storage::disk('public')->url('/img/gateway_logo/' . $row['id'].'.png') }}">
                                 </a><br>
                             @endif
                         @endforeach

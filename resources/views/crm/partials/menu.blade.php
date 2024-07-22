@@ -9,7 +9,7 @@
                             class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                                 class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('crm.invoices.index')}}"><img
-                                src="{{ Storage::disk('public')->url('app/public/img/company/' . business(auth('crm')->user()->ins)['logo']) }}"
+                                src="{{ Storage::disk('public')->url('/img/company/' . business(auth('crm')->user()->ins)['logo']) }}"
                                class="avatar-50" style="max-height:70px">
                         <h6 class="brand-text">{{business(auth('crm')->user()->ins)['name']}}</h6>
                     </a></li>
@@ -55,7 +55,7 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown"><span
                                     class="avatar avatar-online"><img
-                                        src="{{ Storage::disk('public')->url('app/public/img/customer/' .auth('crm')->user()->picture) }}"><i></i></span><span
+                                        src="{{ Storage::disk('public')->url('/img/customer/' .auth('crm')->user()->picture) }}"><i></i></span><span
                                     class="user-name">{{auth('crm')->user()->name}}</span></a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
                                                                           href="{{route('crm.user.update')}}"><i
@@ -81,7 +81,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="navigation-header  text-center mb-2"><span class="white">{{trans('customers.panel')}}</span>
                 <div class="mt-2"></div>
-                <img src="{{ Storage::disk('public')->url('app/public/img/customer/' .auth('crm')->user()->picture) }}"
+                <img src="{{ Storage::disk('public')->url('/img/customer/' .auth('crm')->user()->picture) }}"
                      class="avatar-100"></li>
 
 

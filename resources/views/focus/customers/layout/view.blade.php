@@ -69,7 +69,7 @@
                                 <div class="media-body media p-1">
                                     <div class="media-middle pr-1"><span
                                                 class="avatar avatar-lg rounded-circle ml-2"><img
-                                                    src="{{Storage::disk('public')->url('app/public/img/customer/' . $customer->picture)}}"
+                                                    src="{{Storage::disk('public')->url('/img/customer/' . $customer->picture)}}"
                                                     alt="avatar"><i></i></span></div>
 
                                 </div>

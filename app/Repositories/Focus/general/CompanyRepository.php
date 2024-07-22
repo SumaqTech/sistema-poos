@@ -61,7 +61,9 @@ class CompanyRepository extends BaseRepository
         if (!empty($input['theme_logo'])) {
             $input['theme_logo'] = $this->uploadPicture($input['theme_logo'], $this->file_header_path);
         }
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $company = Company::where('id', auth()->user()->ins)->update($input);
 
            if (@$company) {

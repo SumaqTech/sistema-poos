@@ -56,7 +56,7 @@
 </head>
 <body dir="{{$general['direction']}}">
 <h3 id="logo" class="text-center"><br><img style="max-height:100px;"
-                                           src='{{ Storage::disk('public')->url('app/public/img/company/' . $company['logo']) }}'
+                                           src='{{ Storage::disk('public')->url('/img/company/' . $company['logo']) }}'
                                            alt='Logo'></h3>
 <div id='printbox'>
     <h2 style="margin-top:0" class="text-center">{{$company['cname']}}</h2>
