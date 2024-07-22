@@ -66,7 +66,7 @@ class HrmsTableController extends Controller
             ->addColumn('picture', function ($hrm) {
 
                 return '<img class="media-object img-lg border round"
-                                                                      src="' . Storage::disk('public')->url('app/public/img/users/' . @$hrm->picture) . '"
+                                                                      src="' . Storage::disk('public')->url('/img/users/' . @$hrm->picture) . '"
                                                                       alt="Employee Image">';
             })
             ->addColumn('active', function ($hrm) {

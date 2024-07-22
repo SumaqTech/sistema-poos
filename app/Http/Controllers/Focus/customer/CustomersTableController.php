@@ -62,7 +62,7 @@ class CustomersTableController extends Controller
 <input type="checkbox" name="cust[]" class="custom-checkbox" value="' . $customer->id . '">
                                                
                                                 <label><img class="media-object img-lg "
-                                                                      src="' . Storage::disk('public')->url('app/public/img/customer/' . $customer->picture) . '"
+                                                                      src="' . Storage::disk('public')->url('/img/customer/' . $customer->picture) . '"
                                                                       alt="Client Image"></label>
                                             </div>';
             })
