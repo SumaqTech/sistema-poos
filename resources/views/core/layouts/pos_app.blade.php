@@ -190,46 +190,46 @@
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h4 class="modal-title">ShortCuts</h4>
+                        <h4 class="modal-title">Atajos</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <td>Alt+x</td>
-                                <td>Focus to products search</td>
+                                <td>Centrarse en la búsqueda de productos</td>
                             </tr>
                             <tr>
                                 <td>Alt+c</td>
-                                <td>Focus to customer search & Invoice Settings</td>
+                                <td>Centrarse en la búsqueda de clientes y la configuración de facturas</td>
                             </tr>
                             <tr>
                                 <td>Alt+h</td>
-                                <td>Check Drafts & On Hold</td>
+                                <td>Consultar borradores y en espera</td>
                             </tr>
 
                             <tr>
                                 <td>Alt+s (twice)</td>
-                                <td>PayNow + Thermal Print</td>
+                                <td>Pagar ahora + Impresión</td>
                             </tr>
                             <tr>
                                 <td>Alt+q</td>
-                                <td>Select First product</td>
+                                <td>Seleccione Primer producto</td>
                             </tr>
                             <tr>
                                 <td>Alt+n</td>
-                                <td>Create New Invoice</td>
+                                <td>Crear nueva factura</td>
                             </tr>
                             <tr>
                                 <td>Alt+d</td>
-                                <td>Save the draft</td>
+                                <td>guardar el borrador</td>
                             </tr>
 
 
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
 
