@@ -43,7 +43,9 @@ class PrefixRepository extends BaseRepository
      */
     public function update(Prefix $prefix, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($prefix->update($input))
             return true;
 

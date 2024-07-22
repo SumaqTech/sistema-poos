@@ -7,7 +7,7 @@
                 <li class="nav-item mr-auto logo_margin"><a class="navbar-brand" href="{{route('biller.dashboard')}}"><img
                             class="brand-logo"
                             alt="Brand Logo"
-                            src="{{ Storage::disk('public')->url('app/public/img/company/theme/' . config('core.theme_logo')) }}">
+                            src="{{ Storage::disk('public')->url('/img/company/theme/' . config('core.theme_logo')) }}">
 
                     </a></li>
 
@@ -109,7 +109,7 @@
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
                                                                    href="#" data-toggle="dropdown"><span
                                 class="avatar avatar-online"><img
-                                    src="{{ Storage::disk('public')->url('app/public/img/users/' . @$logged_in_user->picture) }}"
+                                    src="{{ Storage::disk('public')->url('/img/users/' . @$logged_in_user->picture) }}"
                                     alt=""><i></i></span><span class="user-name">{{ $logged_in_user->name }}</span></a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
                                                                           href="{{ route('biller.profile') }}"><i

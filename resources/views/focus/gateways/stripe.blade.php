@@ -317,7 +317,7 @@
 
                         <div class="col-md-6"><span class="display-block text-xs-center"><img class="bg-white round "
                                                                                               style="max-width:30rem;max-height:10rem"
-                                                                                              src="{{ Storage::disk('public')->url('app/public/img/gateway_logo/' . $row['id'].'.png') }}"></span>
+                                                                                              src="{{ Storage::disk('public')->url('/img/gateway_logo/' . $row['id'].'.png') }}"></span>
                             <div class="form-group">
                                 <label for="cardNumber"> {{$general['bill_type']}}
                                     #{{$invoice['tid']}} {{trans('general.total')}}
@@ -422,7 +422,7 @@
             <section class="card">
 
                 <div class="card-body bg-white"><img class="img-responsive pull-right"
-                                                     src="{{ Storage::disk('public')->url('app/public/img/gateway_logo/ssl-seal.png') }}">
+                                                     src="{{ Storage::disk('public')->url('/img/gateway_logo/ssl-seal.png') }}">
                 </div>
             </section>
 

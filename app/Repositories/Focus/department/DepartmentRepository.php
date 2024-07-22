@@ -41,7 +41,9 @@ class DepartmentRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Department::create($input)) {
             return true;
         }
@@ -58,7 +60,9 @@ class DepartmentRepository extends BaseRepository
      */
     public function update(Department $department, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($department->update($input))
             return true;
 

@@ -241,7 +241,7 @@
                                 <div class="media-body media p-1">
                                     <div class="media-middle pr-1"><span
                                                 class="avatar avatar-lg rounded-circle ml-2"><img
-                                                    src="{{Storage::disk('public')->url('app/public/img/users/' . $hrm->picture)}}"
+                                                    src="{{Storage::disk('public')->url('/img/users/' . $hrm->picture)}}"
                                                     alt="avatar"><i></i></span></div>
 
                                 </div>
@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="media-middle pr-1"><span
                                             class="avatar avatar-lg rounded-circle ml-2"><img
-                                                src="{{Storage::disk('public')->url('app/public/img/signs/' . $hrm->signature)}}"
+                                                src="{{Storage::disk('public')->url('/img/signs/' . $hrm->signature)}}"
                                                 alt="avatar"><i></i></span></div>
                             </div>
 

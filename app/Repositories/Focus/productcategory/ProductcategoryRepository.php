@@ -47,7 +47,9 @@ class ProductcategoryRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
        $c=Productcategory::create($input);
        if ($c->id) return $c->id;
         throw new GeneralException(trans('exceptions.backend.productcategories.create_error'));
@@ -63,7 +65,9 @@ class ProductcategoryRepository extends BaseRepository
      */
     public function update(Productcategory $productcategory, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($productcategory->update($input))
             return true;
 

@@ -39,9 +39,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col"><a
-                                                        href="{{Storage::disk('public')->url('app/public/img/products/' .@$product->standard->image)}}"><img
+                                                        href="{{Storage::disk('public')->url('/img/products/' .@$product->standard->image)}}"><img
                                                             class="media-object img-xl m-1 border"
-                                                            src="{{Storage::disk('public')->url('app/public/img/products/' .@$product->standard->image)}}"
+                                                            src="{{Storage::disk('public')->url('/img/products/' .@$product->standard->image)}}"
                                                             alt="Product Image"></a></div>
                                         </div>
                                         <div class="row">
@@ -121,9 +121,9 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col"><a
-                                                                href="{{Storage::disk('public')->url('app/public/img/products/' .$row->image)}}"><img
+                                                                href="{{Storage::disk('public')->url('/img/products/' .$row->image)}}"><img
                                                                     class="media-object img-xl m-1 border"
-                                                                    src="{{Storage::disk('public')->url('app/public/img/products/' .$row->image)}}"
+                                                                    src="{{Storage::disk('public')->url('/img/products/' .$row->image)}}"
                                                                     alt="Product Image"></a></div>
                                                 </div>
                                                 <div class="row">

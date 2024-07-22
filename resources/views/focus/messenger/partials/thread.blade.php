@@ -7,7 +7,7 @@ $class_alert = $thread->isUnread(Auth::id()) ? 'alert alert-light ' : '';
     <a href="{{ route('biller.messages.show', $thread->id) }}" class="media border-0">
         <div class="media-left pr-1">
                                     <span class="avatar avatar-md {{$class}}"><img class="media-object rounded-circle"
-                                                                                   src="{{ Storage::disk('public')->url('app/public/img/users/' . user_data($thread->participants->first()->user_id)->picture) }}"
+                                                                                   src="{{ Storage::disk('public')->url('/img/users/' . user_data($thread->participants->first()->user_id)->picture) }}"
                                                                                    alt="{{ user_data($thread->participants->first()->user_id)->first_name}}">
                                         <i></i>
                                     </span>

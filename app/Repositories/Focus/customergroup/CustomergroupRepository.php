@@ -41,7 +41,9 @@ class CustomergroupRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $input['disc_rate'] = numberClean($input['disc_rate']);
         $result=Customergroup::create($input);
         if ($result->id) {
@@ -60,7 +62,9 @@ class CustomergroupRepository extends BaseRepository
      */
     public function update(Customergroup $customergroup, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $input['disc_rate'] = numberClean($input['disc_rate']);
     	if ($customergroup->update($input))
             return true;

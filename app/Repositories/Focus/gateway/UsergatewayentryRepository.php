@@ -41,7 +41,9 @@ class UsergatewayentryRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Usergatewayentry::create($input)) {
             return true;
         }
@@ -58,7 +60,9 @@ class UsergatewayentryRepository extends BaseRepository
      */
     public function update(Usergatewayentry $usergatewayentry, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($usergatewayentry->update($input))
             return true;
 

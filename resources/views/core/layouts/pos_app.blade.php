@@ -14,12 +14,12 @@
     @yield('meta')
     <title>@yield('title', app_name())</title>
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ Storage::disk('public')->url('app/public/img/company/ico/' . config('core.icon')) }}">
+          href="{{ Storage::disk('public')->url('/img/company/ico/' . config('core.icon')) }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
           rel="stylesheet">
     <script type="text/javascript">
         var baseurl = '{{route('biller.index')}}/';
-        var asset_url = '{{Storage::disk('public')->url('app/public/')}}';
+        var asset_url = '{{Storage::disk('public')->url('/')}}';
         var crsf_token = 'csrf-token';
         var crsf_hash = '{{ csrf_token() }}';
         window.Laravel = {!! json_encode([ 'csrfToken' => csrf_token() ]) !!};
@@ -58,7 +58,7 @@
                                                            href="{{route('biller.dashboard')}}"><img
                                         class="brand-logo"
                                         alt="Brand Logo"
-                                        src="{{ Storage::disk('public')->url('app/public/img/company/theme/' . config('core.theme_logo')) }}">
+                                        src="{{ Storage::disk('public')->url('/img/company/theme/' . config('core.theme_logo')) }}">
 
                             </a></li>
                         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse"
@@ -151,7 +151,7 @@
                                         class="dropdown-toggle nav-link dropdown-user-link"
                                         href="#" data-toggle="dropdown"><span
                                             class="avatar avatar-online"><img
-                                                src="{{ Storage::disk('public')->url('app/public/img/users/' . @$logged_in_user->picture) }}"
+                                                src="{{ Storage::disk('public')->url('/img/users/' . @$logged_in_user->picture) }}"
                                                 alt=""><i></i></span><span
                                             class="user-name">{{ $logged_in_user->name }}</span></a>
                                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"

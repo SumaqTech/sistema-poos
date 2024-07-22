@@ -86,7 +86,9 @@ class CustomerRepository extends BaseRepository
         $groups = @$input['data']['groups'];
         unset($input['data']['groups']);
         DB::beginTransaction();
-        $input['data'] = array_map( 'strip_tags', $input['data']);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         try {
             $result = Customer::create($input['data']);
         } catch (QueryException $e){
@@ -147,7 +149,9 @@ class CustomerRepository extends BaseRepository
         $groups = @$input['data']['groups'];
 
         unset($input['data']['groups']);
-          $input['data'] = array_map( 'strip_tags', $input['data']);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
 
         try {
             $customer->update($input['data']);

@@ -14,7 +14,7 @@
     @yield('meta')
     <title>@yield('title', app_name())</title>
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ Storage::disk('public')->url('app/public/img/company/ico/' )}}@yield('icon', 'favicon.ico')">
+          href="{{ Storage::disk('public')->url('/img/company/ico/' )}}@yield('icon', 'favicon.ico')">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
           rel="stylesheet">
     <script type="text/javascript">

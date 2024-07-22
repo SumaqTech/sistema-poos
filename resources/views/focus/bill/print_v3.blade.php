@@ -221,7 +221,7 @@
 <body>
 <table id="header" class="clearfix">
     <tr><td> <div id="logo">
-                <img src="{{ Storage::disk('public')->url('app/public/img/company/' . $company['logo']) }}" height="70">
+                <img src="{{ Storage::disk('public')->url('/img/company/' . $company['logo']) }}" height="70">
             </div></td><td><div id="company">
                 <h2 class="name">{{$company['cname']}}</h2>
                 <div> {{$company['address']}},{{$company['city']}}<br />{{$company['region']}} {{$company['postbox']}}, {{$company['country']}}</div>

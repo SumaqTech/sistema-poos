@@ -46,7 +46,9 @@ class MiscRepository extends BaseRepository
      */
     public function create(array $input)
     {
-         $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Misc::create($input)) {
             return true;
         }
@@ -63,7 +65,9 @@ class MiscRepository extends BaseRepository
      */
     public function update(Misc $misc, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
     	if ($misc->update($input))
             return true;
 

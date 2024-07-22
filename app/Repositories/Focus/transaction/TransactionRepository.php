@@ -71,7 +71,9 @@ class TransactionRepository extends BaseRepository
         $input['debit'] = numberClean($input['debit']);
         unset($input['account_id2']);
         DB::beginTransaction();
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         $result = Transaction::create($input);
         $dual_entry = ConfigMeta::withoutGlobalScopes()->where('feature_id', '=', 13)->first('feature_value');
 

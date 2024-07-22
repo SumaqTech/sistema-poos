@@ -47,7 +47,9 @@ class TagRepository extends BaseRepository
      */
     public function create(array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if (Tag::create($input)) {
             return true;
         }
@@ -64,7 +66,9 @@ class TagRepository extends BaseRepository
      */
     public function update(Tag $tag, array $input)
     {
-        $input = array_map( 'strip_tags', $input);
+        $input = array_map(function($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $input);
         if ($tag->update($input))
             return true;
 

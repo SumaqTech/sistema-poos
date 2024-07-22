@@ -101,7 +101,7 @@
 <body dir="{{$general['direction']}}">
 <div class="receipt">
     <div class="align_center"><img
-                src="{{ Storage::disk('public')->url('app/public/img/company/' . $company['logo']) }}">
+                src="{{ Storage::disk('public')->url('/img/company/' . $company['logo']) }}">
     </div>
     <p class="align_center">{{$company['cname']}}<small>
             <br>{{$company['address']}}, {{$company['city']}}

@@ -145,7 +145,7 @@
 <body>
 <header class="clearfix">
     <div id="logo">
-        <img src="{{ Storage::disk('public')->url('app/public/img/company/' . $company['logo']) }}" height="120">
+        <img src="{{ Storage::disk('public')->url('/img/company/' . $company['logo']) }}" height="120">
     </div>
     <h1>{{$general['bill_type']}} {{prefix($general['prefix'],$invoice['ins'])}}#{{$invoice['tid']}}</h1>
     <div id="company" class="clearfix">
