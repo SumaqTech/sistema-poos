@@ -107,7 +107,7 @@ class PrinterController extends Controller
             $data['qrc'] = 'pos_' . date('Y_m_d_H_i_s') . '_';
             $qrCode = new QrCode($data['link']['preview']);
             $qrCode->writeFile(Storage::disk('public')->path('qr' . DIRECTORY_SEPARATOR . $data['qrc'] . '.png'));
-            $data['image'] = Storage::disk('public')->url('app/public/qr/' . $data['qrc'] . '.png');
+            $data['image'] = Storage::disk('public')->url('/qr/' . $data['qrc'] . '.png');
         }
 
         return view('focus.bill.print_compact_v1', $data);

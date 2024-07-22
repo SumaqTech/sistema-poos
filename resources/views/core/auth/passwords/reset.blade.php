@@ -20,7 +20,7 @@
 
                                     <div class="card-title text-center">
                                         <img class="avatar-100"
-                                             src="{{ Storage::disk('public')->url('app/public/img/company/' . business()['logo']) }}"
+                                             src="{{ Storage::disk('public')->url('/img/company/' . business()['logo']) }}"
                                              alt="Logo">
                                     </div>
                                     <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">

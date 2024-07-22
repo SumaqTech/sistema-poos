@@ -30,7 +30,7 @@
 
         @endforeach
         @if(!$flag)
-            <li class="alert alert-danger"> Please set 775 for all sub-directories of storage/app/public manually to
+            <li class="alert alert-danger"> Please set 775 for all sub-directories of storage/ manually to
                 avoid file upload error.
             </li> @endif
     </ul>

@@ -13,7 +13,7 @@
                                     <div class="card-header border-0">
                                         <div class="card-title text-center">
                                             <div class="p-1"><br><br><br><img class="card-img-100"
-                                                                              src="{{ Storage::disk('public')->url('app/public/img/logo/' . $setting->logo) }}"
+                                                                              src="{{ Storage::disk('public')->url('/img/logo/' . $setting->logo) }}"
                                                                               alt="branding logo"></div>
                                         </div>
                                         <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">

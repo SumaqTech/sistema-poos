@@ -90,7 +90,7 @@ class ProductsImport implements ToCollection, WithBatchInserts, WithValidation, 
 
                     if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
                         $img = time().Str::random(6) . '.' . $ext;
-                        file_put_contents(storage_path('app/public/img' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $img), file_get_contents($url));
+                        file_put_contents(storage_path('/img' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $img), file_get_contents($url));
 
 
                     }

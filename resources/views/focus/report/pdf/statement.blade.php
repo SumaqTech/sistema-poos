@@ -157,7 +157,7 @@
     <table>
         <tr>
             <td class="myco">
-                <img src="{{ Storage::disk('public')->url('app/public/img/company/' . config('core.logo')) }}"
+                <img src="{{ Storage::disk('public')->url('/img/company/' . config('core.logo')) }}"
                      style="max-width:100px;">
             </td>
             <td>

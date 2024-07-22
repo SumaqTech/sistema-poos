@@ -41,7 +41,7 @@
                     <div class="col-lg-6">
                         <div class="image-container">
                             <img class="img-fluid"
-                                 src="{{Storage::disk('public')->url('app/public/img/general/login.svg')}}"
+                                 src="{{Storage::disk('public')->url('/img/general/login.svg')}}"
                                  alt="alternative">
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
