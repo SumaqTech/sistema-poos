@@ -58,5 +58,21 @@ class ProductVariationRepository extends BaseRepository
 
     }
 
+    public function getForDataTable2()
+    {
+        $q = ProductVariation::with(['product']);
+
+        // Filtrar por warehouse_id si p_rel_id y p_rel_type están presentes
+        $q->when(request('p_rel_id') && request('p_rel_type') == 2, function ($q) {
+            return $q->where('warehouse_id', '=', request('p_rel_id', 0));
+        });
+    
+        // Filtrar para incluir solo registros donde type_action no sea nulo
+        $q->whereNotNull('type_action');
+    
+        return $q->get();
+
+    }
+
 
 }

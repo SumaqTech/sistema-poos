@@ -234,7 +234,8 @@ class ProductsController extends Controller
     {
 
         if ($request->from_warehouse and $request->to_warehouse and $request->products_l and $request->from_warehouse != $request->to_warehouse) {
-            $input = $request->only('from_warehouse', 'to_warehouse', 'products_l', 'qty', 'merger');
+            $input = $request->only('from_warehouse', 'to_warehouse', 'products_l', 'qty', 'merger', 'type_action');
+            $input['type_action'] = $input['type_action'] ?? null;
             $i = 0;
             $qtyArray = explode(',', $input['qty']);
             $sort = implode(',', $qtyArray);
@@ -259,7 +260,9 @@ class ProductsController extends Controller
                     $check_product->save();
                 } else {
                     $new_item = $row->toArray();
-                    $new_item['warehouse_id'] = $input['to_warehouse'];
+                    $new_item['warehouse_id'] = $input['to_warehouse']; 
+                    $new_item['from_warehouse'] = $input['from_warehouse']; 
+                    $new_item['type_action'] = $input['type_action']; 
                     $new_item['qty'] = $qtyArray[$i];
                     if (!$new_item['parent_id']) $new_item['parent_id'] = $new_item['id'];
                     $new_product = ProductVariation::create($new_item);
@@ -277,7 +280,18 @@ class ProductsController extends Controller
         }
 
         $warehouses = Warehouse::all();
-        return view('focus.products.stock_transfer', compact('warehouses'));
+        $input = $request->only('rel_type', 'rel_id');
+        $segment = false;
+        if (isset($input['rel_id']) and isset($input['rel_type'])) {
+            switch ($input['rel_type']) {
+                case 2 :
+                    $segment = Warehouse::find($input['rel_id']);
+                    break;
+                default :
+                    $segment = Productcategory::find($input['rel_id']);
+            }
+        }
+        return view('focus.products.stock_transfer', compact('warehouses','input', 'segment'));
     }
 
     function standard(ManageProductRequest $style)
