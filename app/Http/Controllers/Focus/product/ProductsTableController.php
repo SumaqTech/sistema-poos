@@ -68,7 +68,7 @@ class ProductsTableController extends Controller
                 ->addColumn('warehouse', function ($item) {
 
                     return $item->warehouse['title'] . '<img class="media-object img-lg border"
-                                                                      src="' . Storage::disk('public')->url('app/public/img/products/' . @$item['image']) . '"
+                                                                      src="' . Storage::disk('public')->url('/img/products/' . @$item['image']) . '"
                                                                       alt="Product Image">';
                 })
                 ->addColumn('category', function ($item) {
@@ -103,7 +103,7 @@ class ProductsTableController extends Controller
                 ->addColumn('warehouse', function ($item) {
 
                     return $item->standard['warehouse']['title'] . '<img class="media-object img-lg border"
-                                                                      src="' . Storage::disk('public')->url('app/public/img/products/' . @$item->standard['image']) . '"
+                                                                      src="' . Storage::disk('public')->url('/img/products/' . @$item->standard['image']) . '"
                                                                       alt="Product Image">';
                 })
                  ->addColumn('code', function ($item) {
