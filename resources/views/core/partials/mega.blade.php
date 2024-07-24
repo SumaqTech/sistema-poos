@@ -23,7 +23,7 @@
                         <li><a class="dropdown-item" href="{{route('biller.settings.status')}}"><i
                                     class="fa fa-flag-o"></i> {{trans('meta.default_status')}}
                             </a></li>
-                        <li><a class="dropdown-item" href="{{route('biller.markets.index')}}"><i
+                        <li hidden><a class="dropdown-item" href="{{route('biller.markets.index')}}"><i
                                     class="fa fa-vcard"></i> {{trans('sales_channel.sales_channels')}}
                             </a></li>
                         <li><a class="dropdown-item" href="{{route('biller.settings.business_goals')}}"><i
@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </li>
-        <li class="col-md-3 col-sm-6">
+        <li hidden hi class="col-md-3 col-sm-6">
             <h6 class="dropdown-menu-header text-uppercase"><i
                     class="fa fa-random"></i> {{trans('business.billing_settings')}}</h6>
             <ul>
@@ -63,7 +63,7 @@
             </ul>
         </li>
 
-        <li class="col-md-3 col-sm-6">
+        <li hidden class="col-md-3 col-sm-6">
             <h6 class="dropdown-menu-header text-uppercase"><i
                     class="fa fa-money"></i> {{trans('business.payment_account_settings')}}
             </h6>
@@ -148,7 +148,7 @@
                 </li>
             </ul>
         </li>
-        <li class="col-md-3 col-sm-6">
+        <li hidden class="col-md-3 col-sm-6">
             <h6 class="dropdown-menu-header text-uppercase"><i
                     class="fa fa-cogs"></i> {{trans('business.advanced_settings')}}</h6>
             <ul>
@@ -172,7 +172,7 @@
                 </li>
             </ul>
         </li>
-        <li class="col-md-3 col-sm-6">
+        <li hidden class="col-md-3 col-sm-6">
             <h6 class="dropdown-menu-header text-uppercase"><i
                     class="fa fa-asterisk"></i> {{trans('business.crm_hrm_settings')}}</h6>
             <ul>
@@ -209,9 +209,9 @@
                 </li>
             </ul>
         </li><li class="col-md-3 col-sm-6">
-            <h6 class="dropdown-menu-header text-uppercase"><i
+            <h6 hidden class="dropdown-menu-header text-uppercase"><i
                     class="fa fa-plug"></i> Plugins</h6>
-            <ul>
+            <ul hidden>
                 <li class="menu-list">
                     <ul>
 
