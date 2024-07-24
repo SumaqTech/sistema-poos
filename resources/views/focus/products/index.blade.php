@@ -112,7 +112,9 @@
                                             <th>{{ trans('products.qty') }}</th>
                                             <th>{{ trans('products.price') }}</th>
                                             <th>{{ trans('general.createdat') }}</th>
-                                             <th>{{ trans('products.code') }}</th>
+                                            {{-- <th>asdasd</th>
+                                            <th>asdads</th> --}}
+                                             {{-- <th>{{ trans('products.code') }}</th> --}}
                                             <th>{{ trans('labels.general.actions') }}</th>
                                         </tr>
                                         </thead>
@@ -177,7 +179,9 @@
                     {data: 'qty', name: 'qty'},
                     {data: 'price', name: 'price'},
                     {data: 'created_at', name: '{{config('module.products.table')}}.created_at'},
-                    {data: 'code', name: 'code',visible:false},
+                    // {data: 'code', name: 'code',visible:false},
+                    // {data: 'from_w', name: 'from_w',visible:false},
+                    // {data: 'type_action', name: 'type_action',visible:false},
                     {data: 'actions', name: 'actions', searchable: false, sortable: false}
                 ],
                 order: [[0, "asc"]],

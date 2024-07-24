@@ -16,6 +16,11 @@ trait ProductVariationRelationship
         return $this->hasOne(Warehouse::class,'id','warehouse_id');
     }
 
+    public function from_w()
+    {
+        return $this->hasOne(Warehouse::class,'id','from_warehouse');
+    }
+
         public function product_serial()
     {
         return $this->hasMany(ProductMeta::class, 'ref_id', 'id')->where('rel_type','=',2)->withoutGlobalScopes();
