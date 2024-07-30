@@ -27,6 +27,7 @@ use App\Models\product\ProductVariation;
 use App\Models\transaction\Transaction;
 
 use App\Http\Controllers\Controller;
+use App\Models\product\Product;
 use Illuminate\Support\Facades\DB;
 
 
@@ -62,9 +63,26 @@ class CoreDashboard extends Controller
                     }
             }
                 }
+                // Obtener el primer registro para cada producto basado en la fecha de actualización
+                    $products = ProductVariation::select('product_id', 'qty', 'updated_at')
+                    ->whereIn('id', function ($query) {
+                        $query->selectRaw('MIN(id)')
+                            ->from('product_variations')
+                            ->groupBy('product_id');
+                    })
+                    ->with('product') // Asegúrate de cargar la relación del producto
+                    ->get();
+
+                    // Formatear los datos para la gráfica
+                    $chart_result = $products->map(function($product) {
+                    return [
+                        'product_name' => $product->product->name, // Nombre del producto
+                        'amount' => $product->qty // Cantidad del primer registro
+                    ];
+                    });
 
 
-            return view('focus.dashboard.index', compact('data', 'transactions','income_cat','exp_cat'));
+            return view('focus.dashboard.index', compact('data', 'transactions','income_cat','exp_cat', 'chart_result'));
         }
         if (access()->allow('product-manage')) {
             return new RedirectResponse(route('biller.products.index'), ['']);

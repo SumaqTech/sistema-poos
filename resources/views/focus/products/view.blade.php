@@ -59,9 +59,23 @@
                                                 - ({{@$product->subcategory->title}})
                                             </div>
                                         </div>
-                                        <div class="row pb-3">
+                                        <div class="row">
                                             <div class="col-3 border-blue-grey border-lighten-5  p-1">{{trans('products.unit')}}</div>
                                             <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">{{$product['unit']}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 border-blue-grey border-lighten-5  p-1">{{trans('products.supplier')}}</div>
+                                            <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">{{$product->supplier->name ?? 'NA'}} - {{$product->supplier->company ?? 'NA'}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 border-blue-grey border-lighten-5  p-1">{{trans('products.acquisition_date')}}</div>
+                                            <div class="col border-blue-grey border-lighten-5  p-1 font-weight-bold">{{$product['acquisition_date']}}</div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-3 border-blue-grey border-lighten-5 p-1">{{ trans('products.status') }}</div>
+                                            <div class="col border-blue-grey border-lighten-5 p-1 font-weight-bold {{ $product['status'] == 1 ? 'text-success' : 'text-danger' }}">
+                                                {{ $product['status'] == 1 ? 'Consumible' : 'No consumible' }}
+                                            </div>
                                         </div>
                                         <h4 class="card-title">{{trans('products.standard_details')}}</h4>
                                         <div class="row mt-3">

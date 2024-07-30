@@ -45,5 +45,9 @@ trait ProductRelationship
         return $this->hasOne(ProductVariation::class);
     }
 
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\supplier\Supplier')->withoutGlobalScopes();
+    }
 
 }

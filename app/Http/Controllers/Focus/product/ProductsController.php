@@ -103,7 +103,7 @@ class ProductsController extends Controller
     {
 
         //Input received from the request
-        $input['main'] = $request->only(['name', 'taxrate', 'product_des', 'productcategory_id', 'sub_cat_id', 'unit', 'code_type', 'stock_type']);
+        $input['main'] = $request->only(['name', 'taxrate', 'product_des', 'productcategory_id', 'sub_cat_id', 'unit', 'code_type', 'stock_type','supplier_id','acquisition_date','status']);
         $input['custom_field'] = $request->only(['custom_field']);
         $input['serial'] = $request->only(['product_serial']);
         $input['variation'] = $request->only(['v_id', 'price', 'purchase_price', 'qty', 'code', 'barcode', 'disrate', 'alert', 'expiry', 'warehouse_id', 'variation_name', 'image']);
@@ -143,7 +143,7 @@ class ProductsController extends Controller
             'price' => 'required',
             'qty' => 'required',
         ]);
-        $input['main'] = $request->only(['name', 'taxrate', 'product_des', 'productcategory_id', 'sub_cat_id', 'unit', 'code_type', 'stock_type', 'pv_id']);
+        $input['main'] = $request->only(['name', 'taxrate', 'product_des', 'productcategory_id', 'sub_cat_id', 'unit', 'code_type', 'stock_type', 'pv_id','supplier_id','acquisition_date','status']);
         $input['variation'] = $request->only(['v_id', 'price', 'purchase_price', 'qty', 'code', 'barcode', 'disrate', 'alert', 'expiry', 'warehouse_id', 'variation_name', 'image', 'remove_v']);
         $input['custom_field'] = $request->only(['custom_field']);
         $input['product_serial'] = $request->only(['product_serial_e']);

@@ -83,6 +83,27 @@ class ProductRepository extends BaseRepository
             return is_string($value) ? strip_tags($value) : $value;
         }, $input);
         $input['main']['product_des'] = $product_des;
+        if (isset($input['main']['supplier_id'])) {
+            $input['main']['supplier_id'] = strip_tags($input['main']['supplier_id']);
+        }
+        if (isset($input['main']['acquisition_date']) && is_string($input['main']['acquisition_date'])) {
+            // Quitar etiquetas HTML
+            $acquisitionDate = strip_tags($input['main']['acquisition_date']);
+            
+            // Convertir la fecha a un formato timestamp
+            $timestamp = strtotime($acquisitionDate);
+            
+            // Verificar si la conversión fue exitosa
+            if ($timestamp !== false) {
+                // Convertir el timestamp a formato 'Y-m-d'
+                $formattedDate = date('Y-m-d', $timestamp);
+                $input['main']['acquisition_date'] = $formattedDate;
+            } else {
+                // Manejar el caso donde la fecha no es válida
+                $input['main']['acquisition_date'] = null; // O alguna otra acción que consideres apropiada
+            }
+        }
+        
         $product = Product::create($input['main']);
         if ($product->id) {
             $variations = array();
@@ -153,7 +174,26 @@ class ProductRepository extends BaseRepository
     }, $input['main']);
 
     if (!$input['main']['sub_cat_id']) unset($input['main']['sub_cat_id']);
-    
+    if (isset($input['main']['supplier_id'])) {
+        $input['main']['supplier_id'] = strip_tags($input['main']['supplier_id']);
+    }
+    if (isset($input['main']['acquisition_date']) && is_string($input['main']['acquisition_date'])) {
+        // Quitar etiquetas HTML
+        $acquisitionDate = strip_tags($input['main']['acquisition_date']);
+        
+        // Convertir la fecha a un formato timestamp
+        $timestamp = strtotime($acquisitionDate);
+        
+        // Verificar si la conversión fue exitosa
+        if ($timestamp !== false) {
+            // Convertir el timestamp a formato 'Y-m-d'
+            $formattedDate = date('Y-m-d', $timestamp);
+            $input['main']['acquisition_date'] = $formattedDate;
+        } else {
+            // Manejar el caso donde la fecha no es válida
+            $input['main']['acquisition_date'] = null; // O alguna otra acción que consideres apropiada
+        }
+    }
     if ($product->update($input['main'])) {
         $variations = array();
         $varriation_new = array();
