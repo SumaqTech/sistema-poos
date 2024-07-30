@@ -89,18 +89,18 @@
                     <div class="col-xl-8 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">{{trans('dashboard.sales_invoice_graph')}}</h4>
+                                <h4 class="card-title">Bienes</h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
+                                {{-- <div class="heading-elements">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="reload-a"><i class="ft-shopping-cart"></i></a></li>
                                         <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div id="products-sales" class="height-300"></div>
+                                    <canvas id="productsQuantityChart" width="400" height="200"></canvas>
 
                                 </div>
                             </div>
@@ -647,6 +647,7 @@
 @section('extra-scripts')
     {{ Html::script('core/app-assets/vendors/js/charts/raphael-min.js') }}
     {{ Html::script('core/app-assets/vendors/js/charts/morris.min.js') }}
+    {{ Html::script('core/app-assets/vendors/js/charts/chart.min.js') }}
     {{ Html::script(mix('js/dataTable.js')) }}
     <script type="text/javascript">
         const ps = new PerfectScrollbar('#recent-buyers_p', {
@@ -834,6 +835,33 @@
 
         $('a[data-toggle=tab').on('shown.bs.tab', function (e) {
             window.dispatchEvent(new Event('resize'));
+        });
+        
+        $(document).ready(function () {
+            var productNames = {!! json_encode($chart_result->pluck('product_name')) !!};
+            var productCounts = {!! json_encode($chart_result->pluck('amount')) !!};
+
+            var ctx = document.getElementById('productsQuantityChart').getContext('2d');
+            var productsQuantityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames, // Nombres de productos como etiquetas
+                    datasets: [{
+                        label: 'Cantidad de Bienes',
+                        data: productCounts, // Cantidad de cada producto
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de las barras
+                        borderColor: 'rgba(75, 192, 192, 1)', // Color del borde de las barras
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         });
     </script>
 @endsection

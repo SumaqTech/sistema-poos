@@ -609,9 +609,10 @@ function product_helper()
 {
     $warehouses = \App\Models\warehouse\Warehouse::all();
     $product_category = \App\Models\productcategory\Productcategory::all();
+    $supplier = \App\Models\supplier\Supplier::all();
     $product_variable = \App\Models\productvariable\Productvariable::all();
     $fields = custom_fields(\App\Models\customfield\Customfield::where('module_id', 3)->get()->groupBy('field_type'));
-    return compact('warehouses', 'product_category', 'product_variable', 'fields');
+    return compact('warehouses', 'product_category', 'product_variable', 'fields', 'supplier');
 }
 
 function prefix($value, $public = false)

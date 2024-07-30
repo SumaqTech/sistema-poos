@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div hidden class="col-md-4">
         <div class='form-group'>
             {{ Form::label( 'taxrate', trans('products.taxrate'),['class' => 'col control-label']) }}
             <div class='col'>
@@ -113,6 +113,45 @@
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ Form::label( 'supplier_id', trans('purchaseorders.search_supplier'),['class' => 'col control-label']) }}
+            <div class='col'>                
+                <select class="form-control" name="supplier_id" id="supplier-select">
+                    <option value="0">--{{ trans('purchaseorders.search_supplier')}}--</option>
+                    @foreach($supplier as $item)
+                        @if(!$item->type)
+                            <option value="{{$item->id}}" {{ $item->id == @$products->supplier_id ? " selected" : "" }}>{{$item->name}} - {{$item->company}}
+                                </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>            
+        </div>      
+    </div>
+    <div class="col-md-4">
+        <div class='form-group'>
+            <div class='col'>
+                {{ Form::label( 'acquisition_date', trans('products.acquisition_date'),['class' => 'col control-label']) }}
+            {{ Form::text('acquisition_date', dateFormat(@$products->acquisition_date), ['class' => 'form-control box-size', 'placeholder' => trans('products.acquisition_date'),'data-toggle'=>'datepicker-two','autocomplete'=>'false']) }}
+        </div>        
+    </div>
+</div>
+<div class="col-md-4">
+    <div class='form-group'>
+        {{ Form::label('status', trans('products.status'), ['class' => 'col control-label']) }}
+        <div class='col'>
+            <div class="form-check">
+                {{ Form::radio('status', 0, @$products->status == 0, ['id' => 'status_no_consumable', 'class' => 'form-check-input']) }}
+                {{ Form::label('status_no_consumable', 'No consumible', ['class' => 'form-check-label']) }}
+            </div>
+            <div class="form-check">
+                {{ Form::radio('status', 1, @$products->status == 1, ['id' => 'status_consumable', 'class' => 'form-check-input']) }}
+                {{ Form::label('status_consumable', 'Consumible', ['class' => 'form-check-label']) }}
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 
@@ -175,16 +214,16 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    {{ Form::label( 'productcategory_id', trans('products.warehouse_id'),['class' => 'col control-label']) }}
+                    {{ Form::label( 'warehouse_id', trans('products.warehouse_id'),['class' => 'col control-label']) }}
                     <div class='col'>
-                        <select class="form-control" name="warehouse_id[]">
-
+                        <select class="form-control" name="warehouse_id[]" id="warehouse-select">
+                            <option value="0">--{{trans('products.warehouse_id')}}--</option>
                             @foreach($warehouses as $item)
-                                <option value="{{$item->id}}" {{ $item->id == @$products->warehouse_id ? " selected" : "" }}>{{$item->title}}</option>
+                                <option value="{{$item->id}}" {{ $item->id == @$products->standard['warehouse_id'] ? " selected" : "" }}>{{$item->title}}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>                
             </div>
             <div class="col-md-4">
                 <div class='form-group'>
@@ -208,7 +247,7 @@
 
         <div class="row">
 
-            <div class="col-md-4">
+            <div hidden class="col-md-4">
                 <div class='form-group'>
                     {{ Form::label( 'disrate', trans('products.disrate'),['class' => 'col control-label']) }}
                     <div class='col'>
@@ -317,9 +356,9 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            {{ Form::label( 'productcategory_id', trans('products.warehouse_id'),['class' => 'col control-label']) }}
+                            {{ Form::label( 'warehouse_id', trans('products.warehouse_id'),['class' => 'col control-label']) }}
                             <div class='col'>
-                                <select class="form-control" name="warehouse_id[]">
+                                <select class="form-control" name="warehouse_id">
 
                                     @foreach($warehouses as $item)
                                         <option value="{{$item->id}}" {{ $item->id == @$row->warehouse_id ? " selected" : "" }}>{{$item->title}}</option>
@@ -427,10 +466,15 @@
 @section("after-scripts")
 
     <script type="text/javascript">
-        $('[data-toggle="datepicker"]').datepicker({
-            autoHide: true,
-            format: '{{config('core.user_date_format')}}'
-        });
+        $(function () {
+            $('[data-toggle="datepicker"]').datepicker({
+                autoHide: true,
+                format: '{{config('core.user_date_format')}}'
+            });
+            $('[data-toggle="datepicker-two"]').datepicker('setDate', '{{date(config('core.user_date_format'))}}');
+            editor();
+        });        
+        
 
         $(document).on('click', ".add_serial", function (e) {
             e.preventDefault();
@@ -507,5 +551,15 @@
                 }
             });
         });
+
+    $(document).ready(function() {
+    $('#supplier-select').select2({    
+    });
+});
+
+$(document).ready(function() {
+    $('#warehouse-select').select2({    
+    });
+});
     </script>
 @endsection

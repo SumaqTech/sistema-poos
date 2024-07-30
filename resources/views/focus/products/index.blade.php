@@ -97,11 +97,11 @@
                         <div class="card">
 
                             <div class="card-content">
-
+                                
                                 <div class="card-body">
                                     <table id="products-table"
                                            class="table table-striped table-bordered zero-configuration" cellspacing="0"
-                                           width="100%">
+                                           width="100%">                                           
                                         <thead>
                                         <tr>
                                             <th>{{ trans('labels.backend.products.table.id') }}</th>
@@ -178,7 +178,8 @@
                     {data: 'warehouse', name: 'warehouse'},
                     {data: 'qty', name: 'qty'},
                     {data: 'price', name: 'price'},
-                    {data: 'created_at', name: '{{config('module.products.table')}}.created_at'},
+                    {data: 'created_at', name: 'created_at'},
+                    //{data: 'created_at', name: '{{config('module.products.table')}}.created_at'},
                     // {data: 'code', name: 'code',visible:false},
                     // {data: 'from_w', name: 'from_w',visible:false},
                     // {data: 'type_action', name: 'type_action',visible:false},
